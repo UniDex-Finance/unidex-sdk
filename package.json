@@ -4,7 +4,9 @@
   "description": "Communicate with the unidex API to submit and manage orders ",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node dist/index.js",
+    "compile": "tsc",
+    "postinstall": "tsc"
   },
   "author": "unidex",
   "license": "MIT",
