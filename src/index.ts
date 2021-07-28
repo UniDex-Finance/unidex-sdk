@@ -7,8 +7,7 @@ const objToQueryParams = (obj: any) =>
 
 const BASE_URL = 'https://unidex-backend.herokuapp.com';
 
-class LimitOrders {
-
+class LimitOrdersApi {
   static async listOrders(request: FetchLimitOrdersTxRequest): Promise<Transaction> {
     const params = objToQueryParams(request);
     const url = `${BASE_URL}/orders/limit/list?${params}`;
@@ -44,3 +43,5 @@ class LimitOrders {
     return data.tx;
   }
 }
+
+export default LimitOrdersApi;
