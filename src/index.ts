@@ -1,34 +1,46 @@
-import axios from "axios";
+import axios from 'axios';
 
 const objToQueryParams = (obj: any) =>
   Object.keys(obj)
     .map((key) => `${key}=${obj[key]}`)
     .join('&');
 
-const BASE_URL = 'https://unidex-backend.herokuapp.com'
+const BASE_URL = 'https://unidex-backend.herokuapp.com';
 
 class LimitOrders {
+
+  static async listOrders(request: FetchLimitOrdersTxRequest): Promise<Transaction> {
+    const params = objToQueryParams(request);
+    const url = `${BASE_URL}/orders/limit/list?${params}`;
+    const { data } = await axios.get(url);
+
+    return data;
+  }
 
   static async placeOrder(request: PlaceLimitOrderTxRequest): Promise<Transaction> {
     const params = objToQueryParams(request);
     const url = `${BASE_URL}/orders/limit?${params}`;
     const { data } = await axios.get(url);
 
-    console.log(data);
+    return data.tx;
+  }
 
-    return data;
+  static async cancelOrder(request: CancelLimitOrderTxRequest): Promise<Transaction> {
+    const { account, chainId, module, inputToken, outputToken, minReturn, owner, witness } = request;
+
+    const params = objToQueryParams({
+      account,
+      chainId,
+      module,
+      inputToken,
+      outputToken,
+      minReturn,
+      owner,
+      witness
+    });
+    const url = `${BASE_URL}/orders/limit/cancel?${params}`;
+    const { data } = await axios.get(url);
+
+    return data.tx;
   }
 }
-
-const request = {
-  chainId: 137,
-  account: '0xe9F7B6F81883F321EFb8beed766e873C4E01EC4b',
-  sellToken: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
-  sellAmount: '1000000000000000000',
-  buyToken: '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
-  buyAmount: '799936000000000000',
-}
-
-LimitOrders.placeOrder(request).then(d => {
-  console.log(d);
-})
