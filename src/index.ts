@@ -8,7 +8,7 @@ const objToQueryParams = (obj: any) =>
 const BASE_URL = 'https://unidex-backend.herokuapp.com';
 
 class LimitOrdersApi {
-  static async listOrders(request: FetchLimitOrdersTxRequest): Promise<Transaction> {
+  static async listOrders(request: FetchLimitOrdersTxRequest): Promise<OpenLimitOrder[]> {
     const params = objToQueryParams(request);
     const url = `${BASE_URL}/orders/limit/list?${params}`;
     const { data } = await axios.get(url);
