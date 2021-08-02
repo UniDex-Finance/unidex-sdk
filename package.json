@@ -1,6 +1,6 @@
 {
   "name": "@unidexexchange/sdk",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "Communicate with the unidex API to submit and manage orders ",
   "main": "dist/index.js",
   "scripts": {
