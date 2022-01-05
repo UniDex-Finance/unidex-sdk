@@ -1,15 +1,18 @@
 {
   "name": "@unidexexchange/sdk",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "Communicate with the unidex API to submit and manage orders ",
   "main": "dist/index.js",
   "scripts": {
-    "postinstall": "tsc"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
   "author": "unidex",
   "license": "MIT",
-  "dependencies": {
-    "axios": "^0.21.1",
+  "devDependencies": {
     "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
   }
 }

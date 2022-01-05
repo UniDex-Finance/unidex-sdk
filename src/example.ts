@@ -6,7 +6,9 @@ const request = {
   sellToken: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
   sellAmount: '1000000000000000000',
   buyToken: '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
-  buyAmount: '799936000000000000'
+  buyAmount: '799936000000000000',
+  includeCancelled: false,
+  includeExecuted: false
 };
 
 LimitOrdersApi.placeOrder(request).then(d => {
